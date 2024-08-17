@@ -10,7 +10,8 @@
     }
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "browser_specific_settings": { "gecko": { "id": "dpvcg@harshp.com" } }
 }

@@ -3,6 +3,31 @@ document.addEventListener('DOMContentLoaded', function () {
   const modeSelect = document.getElementById('mode');
   const linksDiv = document.getElementById('links');
 
+  function loadSettings() {
+    browser.storage.local.get(['version', 'mode'], function(result) {
+      if (result.version) {
+        versionSelect.value = result.version;
+      } else {
+        versionSelect.value = '2.1-dev'; // Default value
+      }
+
+      if (result.mode) {
+        modeSelect.value = result.mode;
+      } else {
+        modeSelect.value = 'local'; // Default value
+      }
+
+      updateLinks(); // Update links based on loaded settings
+    });
+  }
+
+  function saveSettings() {
+    browser.storage.local.set({
+      version: versionSelect.value,
+      mode: modeSelect.value
+    });
+  }
+
   const links = {
     "DPV": "/dpv",
     "PD": "/pd",
@@ -45,10 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Initialize links
+  loadSettings();
   updateLinks();
 
-  // Update links when dropdown values change
-  versionSelect.addEventListener('change', updateLinks);
-  modeSelect.addEventListener('change', updateLinks);
+  versionSelect.addEventListener('change', () => {
+    saveSettings();
+    updateLinks();
+  });
+
+  modeSelect.addEventListener('change', () => {
+    saveSettings();
+    updateLinks();
+  });
 });
