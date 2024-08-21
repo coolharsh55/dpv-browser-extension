@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      width: 200px;
-    }
-    select, a {
-      display: block;
-      margin: 10px 0;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
-  <label for="version">Version:</label>
-  <select id="version">
-    <option value="2.0">2.0</option>
-    <option value="2.1-dev" selected>2.1-dev</option>
-  </select>
+  <div class="group">
+    <label for="version">Version:</label>
+    <select id="version">
+      <option value="2.0">2.0</option>
+      <option value="2.1-dev" selected>2.1-dev</option>
+    </select>
+  </div>
   
-  <label for="mode">Mode:</label>
-  <select id="mode">
-    <option value="local" selected>Local</option>
-    <option value="dev">Dev</option>
-    <option value="live">Live</option>
-  </select>
+  <div class="group">
+    <label for="mode">Mode:</label>
+    <select id="mode">
+      <option value="local" selected>Local</option>
+      <option value="dev">Dev</option>
+      <option value="live">Live</option>
+    </select>
+  </div>
   
   <div id="links"></div>
 

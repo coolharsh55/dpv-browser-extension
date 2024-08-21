@@ -1,19 +1,29 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: monospace, sans-serif;
+  font-size: 0.75rem;
   width: 200px;
+  height: 80vh;
   padding: 10px;
+  display: table;
 }
-
 select, a {
   display: block;
   margin: 10px 0;
 }
-
 a {
   color: #0078d7;
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
+}
+.group {
+  display: block;
+}
+label,
+select {
+  display: inline-flex;
+}
+.box {
+  border: 1px gray;
 }

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DPV Link Generator",
-  "version": "1.1",
+  "version": "20240821",
   "description": "Generate DPV links based on version and mode.",
   "browser_action": {
     "default_popup": "popup.html",
