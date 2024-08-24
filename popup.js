@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     "Guide DPV-OWL": "/guides/dpv-owl.html",
     "Guide Consent 27560": "/guides/consent-27560.html",
     "Guide Notice 29184": "/guides/notice-29184.html",    
-    "Search": "/search.html"
+    "Search": "/search.html",
+    "Minutes": "/meetings"
   };
 
   function updateLinks() {
@@ -83,6 +84,8 @@ document.addEventListener('DOMContentLoaded', function () {
     for (const [key, value] of Object.entries(links)) {
         const link = document.createElement('a');
         if (value.includes('/guides')) {
+          link.href = `${base}${value}`;
+        } else if (value.includes('/meetings')) {
           link.href = `${base}${value}`;
         } else {
           link.href = `${baseUrl}${value}`;
