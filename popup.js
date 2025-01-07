@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function saveSettings() {
     browser.storage.local.set({
       version: versionSelect.value,
-      mode: modeSelect.value
+      mode: modeSelect.value,
     });
   }
 
@@ -36,13 +36,14 @@ document.addEventListener('DOMContentLoaded', function () {
     "TECH": "/tech",
     "AI": "/ai",
     "Justifications": "/justifications",
-    "LEGAL": "/legal",
-    "LEGAL-EU": "/legal/eu",
     "EU-GDPR": "/legal/eu/gdpr",
     "EU-DGA": "/legal/eu/dga",
     "EU-AIAct": "/legal/eu/aiact",
     "EU-NIS2": "/legal/eu/nis2",
+    "EU-EHDS": "/legal/eu/ehds",
     "EU-Rights": "/legal/eu/rights",
+    "P7012": "/standards/p7012",
+    "Mappings-ODRL": "/mappings/odrl",
     "Guides": "/guides",
     "Guide DPV-OWL": "/guides/dpv-owl.html",
     "Guide Consent 27560": "/guides/consent-27560.html",
@@ -68,14 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     linksDiv.innerHTML = '';
-
-    // for (const [key, value] of Object.entries(links)) {
-    //   const link = document.createElement('a');
-    //   link.href = `${baseUrl}${value}`;
-    //   link.textContent = key;
-    //   link.target = '_blank';
-    //   linksDiv.appendChild(link);
-    // }
 
     const rowDiv = document.createElement('div');
     rowDiv.style.display = 'flex';
@@ -118,6 +111,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     linksDiv.appendChild(rowDiv);
+
+    let btnLegal = document.getElementById('legal-open');
+    btnLegal.onclick = function() {
+      let selectLegal = document.getElementById('legal');
+      let href = baseUrl + "/legal";
+      if (selectLegal.value != 'index') {
+        href = href + "/" + selectLegal.value;
+      }
+      window.open(href, '_blank').focus();
+    }
   }
 
   loadSettings();
