@@ -112,6 +112,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     linksDiv.appendChild(rowDiv);
 
+    let btnModule = document.getElementById('dpv-module-open');
+    btnModule.onclick = function() {
+      let selectLegal = document.getElementById('dpv-module');
+      let href = baseUrl + "/dpv/modules/";
+      href = href + selectLegal.value + ".html";
+      window.open(href, '_blank').focus();
+    }
+
     let btnLegal = document.getElementById('legal-open');
     btnLegal.onclick = function() {
       let selectLegal = document.getElementById('legal');
