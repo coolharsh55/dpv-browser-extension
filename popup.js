@@ -44,18 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
     "EU-Rights": "/legal/eu/rights",
     "P7012": "/standards/p7012",
     "Mappings-ODRL": "/mappings/odrl",
-    "Guides": "/guides",
-    "Guide DPV-OWL": "/guides/dpv-owl.html",
-    "Guide Consent 27560": "/guides/consent-27560.html",
-    "Guide Notice 29184": "/guides/notice-29184.html",    
     "Search": "/search.html",
     "Minutes": "/meetings"
   };
 
+  let baseUrl, base;
+
   function updateLinks() {
     const version = versionSelect.value;
     const mode = modeSelect.value;
-    let baseUrl, base;
 
     if (mode === 'local') {
       baseUrl = `http://localhost:8000/${version}`;
@@ -85,20 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         link.textContent = key;
         link.target = '_blank';
-        link.style.flex = '1 1 25%';
-        // link.style.boxSizing = 'border-box';
-        link.style.padding = '1px';
-        link.style.margin = "2px";
-        link.style.border = "1px solid black";
-        link.style.textAlign = 'center';
-        link.style.backgroundColor = 'white';
-        link.style.color = 'black';
-        link.style.textDecoration = 'none';
-        link.style.borderRadius = '5px';
-        link.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
-        link.style.fontWeight = 'bold';
-        link.style.transition = 'box-shadow 0.3s ease';
-
+        link.classList.add('link');
         link.addEventListener('mouseover', () => {
             link.style.boxShadow = '0px 6px 8px rgba(0, 0, 0, 0.2)';
         });
@@ -129,6 +113,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       window.open(href, '_blank').focus();
     }
+
+    let btnGuide = document.getElementById('guide-open');
+    btnGuide.onclick = function() {
+      let selectGuide = document.getElementById('guide');
+      let href = base + "/guides/";
+      href = href + selectGuide.value + ".html";
+      window.open(href, '_blank').focus();
+    }
   }
 
   loadSettings();
@@ -142,5 +134,12 @@ document.addEventListener('DOMContentLoaded', function () {
   modeSelect.addEventListener('change', () => {
     saveSettings();
     updateLinks();
+  });
+
+  document.getElementById('search-form').addEventListener('submit', e => {
+    e.preventDefault();
+    console.log(document.getElementById('search').value);
+    let href = baseUrl + "/search.html?q=" + document.getElementById('search').value ;
+    window.open(href, '_blank').focus();
   });
 });

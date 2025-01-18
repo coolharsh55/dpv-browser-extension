@@ -4,28 +4,29 @@
   <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
+  <div style="text-align: center; color: darkgray;"><strong>DPV Links</strong></div>
+  <div class="link">
   <div class="group">
-    <label for="version">Version:</label>
     <select id="version">
-      <option value="2.0">2.0</option>
-      <option value="2.1-dev" selected>2.1-dev</option>
+      <option value="2.0">v2.0</option>
+      <option value="2.1-dev" selected>v2.1-dev</option>
+      <!-- <option value="2.1" selected>v2.1</option> -->
+      <option value="2.1-dev">v2.2-dev</option>
+    </select>
+    <select id="mode">
+      <option value="local" selected>local</option>
+      <option value="dev">dev</option>
+      <option value="live">live</option>
     </select>
   </div>
-  
-  <div class="group">
-    <label for="mode">Mode:</label>
-    <select id="mode">
-      <option value="local" selected>Local</option>
-      <option value="dev">Dev</option>
-      <option value="live">Live</option>
-    </select>
   </div>
   
   <div id="links"></div>
 
+  <div class="link">
   <div class="group">
-    <label for="dpv-module">DPV module:</label>
-    <select id="dpv-module" style="width: 50px;">
+    <select id="dpv-module" style="width: 125px;">
+      <option value="">DPV module</option>
       <option value="context">context</option>
       <option value="entities">entities</option>
       <option value="legal_basis">legal_basis</option>
@@ -41,9 +42,8 @@
   </div>
 
   <div class="group">
-    <label for="legal">Legal:</label>
-    <select id="legal">
-      <option value="index" selected>index</option>
+    <select id="legal" style="width: 125px;">
+      <option value="index" selected>Legal page</option>
       <option value="at">AT</option>
       <option value="be">BE</option>
       <option value="bg">BG</option>
@@ -80,6 +80,31 @@
       <option value="us">US</option>
     </select>
   <button id="legal-open">open</button>
+  </div>
+
+  <div class="group">
+    <select id="guide" style="width: 125px;">
+      <option value="index" selected>Guide</option>
+      <option value="Primer">Primer</option>
+      <option value="Consent-27560">Consent-27560</option>
+      <option value="Notice-29184">Notice-29184</option>
+      <option value="GDPR-ROPA">GDPR-ROPA</option>
+      <option value="GDPR-DPIA">GDPR-DPIA</option>
+      <option value="GDPR-Data-Breach">GDPR-Data-Breach</option>
+      <option value="DPV-ODRL">DPV-ODRL</option>
+      <option value="DPV-OWL">DPV-OWL</option>
+      <option value="DPV-SKOS">DPV-SKOS</option>
+      <option value="DPV-MISC">DPV-MISC</option>
+      <option value="Rights">Rights</option>
+    </select>
+    <button id="guide-open">open</button>
+  </div>
+  </div>
+
+  <div class="link">
+    <form id="search-form">
+      <input type="text" name="search" id="search" placeholder="search">
+    </form>
   </div>
 
   <script src="popup.js"></script>
