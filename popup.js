@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (result.version) {
         versionSelect.value = result.version;
       } else {
-        versionSelect.value = '2.1-dev'; // Default value
+        versionSelect.value = '2.1'; // Default value
       }
 
       if (result.mode) {
@@ -114,11 +114,17 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open(href, '_blank').focus();
     }
 
+    let btnSector = document.getElementById('sector-open');
+    btnSector.onclick = function() {
+      let selectSector = document.getElementById('sector');
+      let href = baseUrl + "/sector/" + selectSector.value;
+      window.open(href, '_blank').focus();
+    }
+
     let btnGuide = document.getElementById('guide-open');
     btnGuide.onclick = function() {
       let selectGuide = document.getElementById('guide');
-      let href = base + "/guides/";
-      href = href + selectGuide.value + ".html";
+      let href = base + selectGuide.value + ".html";
       window.open(href, '_blank').focus();
     }
   }

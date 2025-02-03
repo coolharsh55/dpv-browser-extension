@@ -9,9 +9,8 @@
   <div class="group">
     <select id="version">
       <option value="2.0">v2.0</option>
-      <option value="2.1-dev" selected>v2.1-dev</option>
-      <!-- <option value="2.1" selected>v2.1</option> -->
-      <option value="2.1-dev">v2.2-dev</option>
+      <option value="2.1" selected>v2.1</option>
+      <option value="2.2-dev">v2.2-dev</option>
     </select>
     <select id="mode">
       <option value="local" selected>local</option>
@@ -83,19 +82,32 @@
   </div>
 
   <div class="group">
+    <select id="sector" style="width: 125px;">
+      <option value="" selected>Sector</option>
+      <option value="education/">Education</option>
+      <option value="finance/">Finance</option>
+      <option value="health/">Health</option>
+      <option value="infra/">Infra</option>
+      <option value="law/">Law</option>
+      <option value="publicservices/">Public Services</option>
+    </select>
+    <button id="sector-open">open</button>
+  </div>
+
+  <div class="group">
     <select id="guide" style="width: 125px;">
-      <option value="index" selected>Guide</option>
-      <option value="Primer">Primer</option>
-      <option value="consent-27560">Consent-27560</option>
-      <option value="notice-29184">Notice-29184</option>
-      <option value="gdpr-ropa">GDPR-ROPA</option>
-      <option value="gdpr-dpia">GDPR-DPIA</option>
-      <option value="gdpr-data-breach">GDPR-DataBreach</option>
-      <option value="rights">Rights</option>
-      <option value="dpv-odrl">ODRL</option>
-      <option value="dpv-owl">OWL</option>
-      <option value="dpv-skos">RDFS/SKOS</option>
-      <option value="dpv-misc">Misc. Formats</option>
+      <option value="/guides/index" selected>Guide</option>
+      <option value="/primer/index">Primer</option>
+      <option value="/guides/consent-27560">Consent-27560</option>
+      <option value="/guides/notice-29184">Notice-29184</option>
+      <option value="/guides/gdpr-ropa">GDPR-ROPA</option>
+      <option value="/guides/gdpr-dpia">GDPR-DPIA</option>
+      <option value="/guides/gdpr-data-breach">GDPR-DataBreach</option>
+      <option value="/guides/rights">Rights</option>
+      <option value="/guides/dpv-odrl">ODRL</option>
+      <option value="/guides/dpv-owl">OWL</option>
+      <option value="/guides/dpv-skos">RDFS/SKOS</option>
+      <option value="/guides/dpv-misc">Misc. Formats</option>
     </select>
     <button id="guide-open">open</button>
   </div>
