@@ -127,6 +127,14 @@ document.addEventListener('DOMContentLoaded', function () {
       let href = base + selectGuide.value + ".html";
       window.open(href, '_blank').focus();
     }
+
+    let btnMilestone = document.getElementById('milestone-open');
+    btnMilestone.onclick = function() {
+      let selectMilestone = document.getElementById('milestone');
+      let href = "https://github.com/w3c/dpv/milestone/" + selectMilestone.value;
+      window.open(href, '_blank').focus();
+    }
+
   }
 
   loadSettings();
