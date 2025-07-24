@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (result.version) {
         versionSelect.value = result.version;
       } else {
-        versionSelect.value = '2.1'; // Default value
+        versionSelect.value = '2.2'; // Default value
       }
 
       if (result.mode) {
