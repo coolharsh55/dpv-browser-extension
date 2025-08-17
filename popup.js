@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (value.includes('/meetings')) {
           link.href = `${base}${value}`;
         } else {
-          link.href = `${baseUrl}${value}`;
+          link.href = `${baseUrl}${value}/`;
         }
         link.textContent = key;
         link.target = '_blank';
@@ -107,9 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let btnLegal = document.getElementById('legal-open');
     btnLegal.onclick = function() {
       let selectLegal = document.getElementById('legal');
-      let href = baseUrl + "/legal";
+      let href = baseUrl + "/legal/";
       if (selectLegal.value != 'index') {
-        href = href + "/" + selectLegal.value;
+        href = href + selectLegal.value + "/";
       }
       window.open(href, '_blank').focus();
     }
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('search-form').addEventListener('submit', e => {
     e.preventDefault();
     console.log(document.getElementById('search').value);
-    let href = baseUrl + "/search.html?q=" + document.getElementById('search').value ;
+    let href = baseUrl + "/search.html?query=" + document.getElementById('search').value ;
     window.open(href, '_blank').focus();
   });
 });
