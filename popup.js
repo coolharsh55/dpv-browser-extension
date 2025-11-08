@@ -1,23 +1,37 @@
+const consoleDebug = console.debug;
+let startDebug = function() { console.debug = consoleDebug; }
+let stopDebug = function() { console.debug = function() {}; }
+
 document.addEventListener('DOMContentLoaded', function () {
   const versionSelect = document.getElementById('version');
   const modeSelect = document.getElementById('mode');
   const linksDiv = document.getElementById('links');
+  const debugcheckbox = document.getElementById('debug');
 
   function loadSettings() {
-    browser.storage.local.get(['version', 'mode'], function(result) {
-      if (result.version) {
-        versionSelect.value = result.version;
-      } else {
-        versionSelect.value = '2.2'; // Default value
-      }
+    return new Promise((resolve) => {
+      browser.storage.local.get(['version', 'mode', 'debug'], function(result) {
+        if (result.version) {
+          versionSelect.value = result.version;
+        } else {
+          versionSelect.value = '2.2'; // Default value
+        }
 
-      if (result.mode) {
-        modeSelect.value = result.mode;
-      } else {
-        modeSelect.value = 'local'; // Default value
-      }
+        if (result.mode) {
+          modeSelect.value = result.mode;
+        } else {
+          modeSelect.value = 'local'; // Default value
+        }
 
-      updateLinks(); // Update links based on loaded settings
+        if (result.debug) {
+          startDebug();
+        } else {
+          stopDebug();
+        }
+
+        console.debug(result.version, result.mode, result.debug);
+        resolve();
+      });
     });
   }
 
@@ -25,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     browser.storage.local.set({
       version: versionSelect.value,
       mode: modeSelect.value,
+      debug: debugcheckbox.checked,
     });
   }
 
@@ -137,23 +152,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
   }
 
-  loadSettings();
-  updateLinks();
+  document.getElementById('search-form').addEventListener('submit', e => {
+    e.preventDefault();
+    debug(document.getElementById('search').value);
+    let href = baseUrl + "/search.html?query=" + document.getElementById('search').value ;
+    window.open(href, '_blank').focus();
+  });
+
+  let f_check_version = function() {
+    let version = document.getElementById("version").value;
+    let mode = document.getElementById("mode").value;
+    if (version.includes("-dev") && mode == "live") {
+      let notice = document.getElementById("notice");
+      notice.innerHTML = "<span>warning: version is not live</span>"
+      notice.style.display = 'block';
+    } else {
+      notice.style.display = 'none';
+    }
+    console.debug(version, mode);
+    return new Promise((resolve) => {resolve();});
+  };
+
+  loadSettings().then(f_check_version).then(updateLinks);
 
   versionSelect.addEventListener('change', () => {
+    f_check_version();
     saveSettings();
     updateLinks();
   });
 
   modeSelect.addEventListener('change', () => {
+    f_check_version();
     saveSettings();
     updateLinks();
   });
 
-  document.getElementById('search-form').addEventListener('submit', e => {
-    e.preventDefault();
-    console.log(document.getElementById('search').value);
-    let href = baseUrl + "/search.html?query=" + document.getElementById('search').value ;
-    window.open(href, '_blank').focus();
+  debugcheckbox.addEventListener('change', () => {
+    if (debugcheckbox.checked) { startDebug(); }
+    else { stopDebug(); }
+    saveSettings();
   });
+
 });
