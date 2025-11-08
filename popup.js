@@ -24,12 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (result.debug) {
+          debugcheckbox.checked = true;
           startDebug();
         } else {
+          debugcheckbox.checked = false;
           stopDebug();
         }
 
-        console.debug(result.version, result.mode, result.debug);
+        console.debug("loaded settings:", [result.version, result.mode, result.debug]);
         resolve();
       });
     });
@@ -92,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
           link.href = `${base}${value}`;
         } else if (value.includes('/meetings')) {
           link.href = `${base}${value}`;
+        } else if (value.includes('/search')) {
+          link.href = `${baseUrl}/search`;
         } else {
           link.href = `${baseUrl}${value}/`;
         }
@@ -113,10 +117,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let btnModule = document.getElementById('dpv-module-open');
     btnModule.onclick = function() {
-      let selectLegal = document.getElementById('dpv-module');
-      let href = baseUrl + "/dpv/modules/";
-      href = href + selectLegal.value + ".html";
-      window.open(href, '_blank').focus();
+      let selectModule = document.getElementById('dpv-module');
+      console.debug("opening DPV module:" + selectModule.value);
+      if (selectModule.value) {
+        let href = baseUrl + "/dpv/modules/";
+        href = href + selectModule.value + ".html";
+        window.open(href, '_blank').focus();
+      }
     }
 
     let btnLegal = document.getElementById('legal-open');
@@ -154,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('search-form').addEventListener('submit', e => {
     e.preventDefault();
-    debug(document.getElementById('search').value);
+    console.debug(document.getElementById('search').value);
     let href = baseUrl + "/search.html?query=" + document.getElementById('search').value ;
     window.open(href, '_blank').focus();
   });
