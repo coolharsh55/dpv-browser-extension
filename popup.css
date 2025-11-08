@@ -49,3 +49,14 @@ select {
   font-weight: normal;
   display: none;
 }
+
+#ack {
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+#ack a {
+  border-bottom: 1px solid blue;
+  display: inline-block;
+  font-size: 0.5rem;
+}
