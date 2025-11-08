@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     for (const [key, value] of Object.entries(links)) {
         const link = document.createElement('a');
-        if (value.includes('/guides')) {
+        if (value.includes('/guides') || value.includes('/mappings')) {
           link.href = `${base}${value}`;
         } else if (value.includes('/meetings')) {
           link.href = `${base}${value}`;
