@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const modeSelect = document.getElementById('mode');
   const linksDiv = document.getElementById('links');
   const debugcheckbox = document.getElementById('debug');
+  const milestoneSelect = document.getElementById('milestone');
 
   function loadSettings() {
     return new Promise((resolve) => {
@@ -152,8 +153,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let btnMilestone = document.getElementById('milestone-open');
     btnMilestone.onclick = function() {
-      let selectMilestone = document.getElementById('milestone');
-      let href = "https://github.com/w3c/dpv/milestone/" + selectMilestone.value;
+      let milestoneSelect = document.getElementById('milestone');
+      let href = "https://github.com/w3c/dpv/milestone/" + milestoneSelect.value;
       window.open(href, '_blank').focus();
     }
 
@@ -166,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.open(href, '_blank').focus();
   });
 
-  let f_check_version = function() {
+  function f_check_version() {
     let version = document.getElementById("version").value;
     let mode = document.getElementById("mode").value;
     if (version.includes("-dev") && mode == "live") {
@@ -176,16 +177,29 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       notice.style.display = 'none';
     }
-    console.debug(version, mode);
     return new Promise((resolve) => {resolve();});
   };
 
-  loadSettings().then(f_check_version).then(updateLinks);
+  function changeMilestone() {
+    for (let index=0; index<milestoneSelect.options.length; index++) {
+      if (milestoneSelect.options[index].text == version.value) {
+        milestoneSelect.selectedIndex = index;
+        console.debug("milestone changed:", milestoneSelect.options[index].text);
+        return;
+      }
+    }
+    console.debug("milestone not changed");
+  }
+
+  loadSettings()
+    .then(f_check_version)
+    .then(updateLinks);
 
   versionSelect.addEventListener('change', () => {
     f_check_version();
     saveSettings();
     updateLinks();
+    changeMilestone();
   });
 
   modeSelect.addEventListener('change', () => {
