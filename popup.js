@@ -60,7 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
     "EU-NIS2": "/legal/eu/nis2",
     "EU-EHDS": "/legal/eu/ehds",
     "EU-Rights": "/legal/eu/rights",
-    "P7012": "/standards/p7012",
+    "DE-GDNG": "/legal/de/gdng",
+    "IEEE-7012": "/standards/ieee/7012",
     "Mappings-ODRL": "/mappings/odrl",
     "Search": "/search.html",
     "Minutes": "/meetings"
